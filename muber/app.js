@@ -6,7 +6,10 @@ const routes = require('./routes/routes');
 const app = express();
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://127.0.0.1/muber');
+
+if (process.env.NODE_ENV !== 'test') {
+  mongoose.connect('mongodb://127.0.0.1/muber');
+}
 
 app.use(bodyParser.json());
 
